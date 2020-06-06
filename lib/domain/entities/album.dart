@@ -2,14 +2,14 @@
 
 class Album {
   final _id;
-  final _title;
-  final _image;
+  final String _title;
+  final String _image;
 
   Album(this._id, this._title, this._image);
 
-  get image => _image;
+  String get image => _image;
 
-  get title => _title;
+  String get title => _title;
 
   get id => _id;
 }

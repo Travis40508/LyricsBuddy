@@ -3,14 +3,14 @@
 class Artist {
 
   final _id;
-  final _name;
-  final _image;
+  final String _name;
+  final String _image;
 
   Artist(this._id, this._name, this._image);
 
-  get image => _image;
+  String get image => _image;
 
-  get name => _name;
+  String get name => _name;
 
   get id => _id;
 }

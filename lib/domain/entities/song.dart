@@ -5,8 +5,8 @@ import 'artist.dart';
 
 class Song {
   final _id;
-  final _title;
-  final _lyrics;
+  final String _title;
+  final String _lyrics;
   final Artist _artist;
   final Album _album;
 
@@ -16,9 +16,9 @@ class Song {
 
   Artist get artist => _artist;
 
-  get lyrics => _lyrics;
+  String get lyrics => _lyrics;
 
-  get title => _title;
+  String get title => _title;
 
   get id => _id;
 }
