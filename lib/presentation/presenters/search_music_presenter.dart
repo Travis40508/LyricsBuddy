@@ -4,6 +4,7 @@ import 'package:lyrics_buddy/application/adapters/outbound_port.dart';
 import 'package:lyrics_buddy/application/datastructures/search_music_response_object.dart';
 import 'package:lyrics_buddy/presentation/adapters/view_updater.dart';
 import 'package:lyrics_buddy/presentation/viewmodels/search_music_view_model.dart';
+import 'package:lyrics_buddy/presentation/viewmodels/song_view_model.dart';
 
 class SearchMusicPresenter extends OutboundPort<SearchMusicResponseObject> {
 
@@ -13,7 +14,16 @@ class SearchMusicPresenter extends OutboundPort<SearchMusicResponseObject> {
 
   @override
   void onResult(final SearchMusicResponseObject responseObject) {
-    SearchMusicViewModel searchMusicViewModel = SearchMusicViewModel(responseObject.songs[0].songTitle);
+    SearchMusicViewModel searchMusicViewModel = SearchMusicViewModel(
+      'Music Search',
+      0xFF448AFF,
+      responseObject.isFetchingSongs,
+      responseObject.songs.map((songResponse) => SongViewModel(
+        songResponse.songTitle,
+        songResponse.artistName,
+        songResponse.albumImage != null && songResponse.albumImage.isNotEmpty ? songResponse.albumImage : songResponse.artistImage
+      )).toList()
+    );
 
     _viewUpdater.updateView(searchMusicViewModel);
   }

@@ -8,10 +8,7 @@ abstract class Screen<T extends ViewModel> extends StatefulWidget {
 
   Screen(this._viewNotifier);
 
-  Widget onViewLoaded(T viewModel);
-
-  ///This shouldn't be necessary, as we should always have initial data
-  Widget onViewLoading();
+  Widget buildView(T viewModel);
   void init();
 
   @override
@@ -37,11 +34,12 @@ class _ScreenState<T extends ViewModel> extends State<Screen> {
     return StreamBuilder(
       stream: widget._viewNotifier.fetchViewStream(),
       builder: (context, snapshot) {
+        ///This will prevent exceptions until our initial data has loaded within our stream
         if (!snapshot.hasData) {
-          return widget.onViewLoading();
+          return Container();
         }
 
-        return widget.onViewLoaded(snapshot.data);
+        return widget.buildView(snapshot.data);
       },
     );
   }

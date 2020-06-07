@@ -1,4 +1,5 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lyrics_buddy/presentation/adapters/view_model.dart';
 import 'package:lyrics_buddy/presentation/adapters/view_notifier.dart';
@@ -13,23 +14,53 @@ class SearchMusicScreen extends Screen<SearchMusicViewModel> {
   SearchMusicScreen(this._controller, ViewNotifier<ViewModel> viewNotifier) : super(viewNotifier);
 
   @override
-  Widget onViewLoaded(SearchMusicViewModel viewModel) {
+  Widget buildView(SearchMusicViewModel viewModel) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor: Color(viewModel.appBarColor),
         title: Text(viewModel.title),
+      ),
+      body: Column(
+        children: <Widget>[
+          TextField(
+            decoration: InputDecoration(
+              hintText: 'Ex. Eminem',
+            ),
+            onChanged: (query) => _controller.onTextChanged(query),
+          ),
+          viewModel.isLoading ? Center(child: CircularProgressIndicator()) : ListView.builder(
+            itemCount: viewModel.songs.length,
+            itemBuilder: (_, index) {
+              final song = viewModel.songs[index];
+              return Card(
+                elevation: 4.0,
+                child: ListTile(
+                  leading: CircleAvatar(
+                    child: Image(
+                      image: CachedNetworkImageProvider(
+                        song.image
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    song.title
+                  ),
+                  subtitle: Text(
+                    song.artistName
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
 
   @override
-  Widget onViewLoading() {
-    return CircularProgressIndicator();
-  }
-
-  @override
   void init() {
-    _controller.testing();
+    //Todo
   }
 
 

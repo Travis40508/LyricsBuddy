@@ -6,6 +6,16 @@ class SearchMusicViewInteractor extends ViewInteractor<SearchMusicViewModel> {
 
   SearchMusicViewInteractor() {
     ///This is where we pass in initial data for a screen
-    updateView(SearchMusicViewModel('Title Test'));
+    updateView(fetchInitialData());
+  }
+
+  @override
+  SearchMusicViewModel fetchInitialData() {
+    return SearchMusicViewModel(
+      'Music Search',
+      0xFF448AFF,
+      false,
+      []
+    );
   }
 }

@@ -16,8 +16,14 @@ class SearchMusicUseCase extends InboundPort<SearchMusicRequestObject> {
 
   @override
   void execute(final SearchMusicRequestObject requestObject) async {
+    ///This is how we alert the view that we're loading the values
+    _outboundPort.onResult(SearchMusicResponseObject(
+      [],
+      true
+    ));
     final List<Song> songs =  await _repository.searchMusic(requestObject.query);
-    
+
+    ///And we alert it again once the values have been retrieved
     final responseObject = SearchMusicResponseObject(
       songs.map((song) => SongResponseObject(
         song.title,
@@ -26,7 +32,7 @@ class SearchMusicUseCase extends InboundPort<SearchMusicRequestObject> {
         song.artist.image,
         song.album.title,
         song.album.image
-      )).toList()
+      )).toList(), false
     );
 
     _outboundPort.onResult(responseObject);

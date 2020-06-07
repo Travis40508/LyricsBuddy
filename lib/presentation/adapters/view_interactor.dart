@@ -8,6 +8,8 @@ import 'package:lyrics_buddy/presentation/adapters/view_updater.dart';
 abstract class ViewInteractor<T extends ViewModel> implements ViewUpdater<T>, ViewNotifier<T> {
   StreamController<T> _streamController = StreamController();
 
+  T fetchInitialData();
+
   @override
   void dispose() {
     _streamController.close();
