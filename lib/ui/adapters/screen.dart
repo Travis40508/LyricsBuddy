@@ -9,6 +9,8 @@ abstract class Screen<T extends ViewModel> extends StatefulWidget {
   Screen(this._viewNotifier);
 
   Widget onViewLoaded(T viewModel);
+
+  ///This shouldn't be necessary, as we should always have initial data
   Widget onViewLoading();
   void init();
 
@@ -22,6 +24,12 @@ class _ScreenState<T extends ViewModel> extends State<Screen> {
   void initState() {
     widget.init();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget._viewNotifier.dispose();
+    super.dispose();
   }
 
   @override

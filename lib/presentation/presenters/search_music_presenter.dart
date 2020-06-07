@@ -13,7 +13,7 @@ class SearchMusicPresenter extends OutboundPort<SearchMusicResponseObject> {
 
   @override
   void onResult(final SearchMusicResponseObject responseObject) {
-    SearchMusicViewModel searchMusicViewModel = SearchMusicViewModel('Testing');
+    SearchMusicViewModel searchMusicViewModel = SearchMusicViewModel(responseObject.songs[0].songTitle);
 
     _viewUpdater.updateView(searchMusicViewModel);
   }
