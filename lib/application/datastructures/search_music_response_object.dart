@@ -1,28 +1,11 @@
 
 import 'package:lyrics_buddy/application/adapters/response_object.dart';
+import 'package:lyrics_buddy/application/datastructures/song_response_object.dart';
 
 class SearchMusicResponseObject extends ResponseObject {
-  final String _songTitle;
-  final String _songLyrics;
+  final List<SongResponseObject> _songs;
 
-  final String _artistName;
-  final String _artistImage;
+  SearchMusicResponseObject(this._songs);
 
-  final String _albumTitle;
-  final String _albumImage;
-
-  SearchMusicResponseObject(this._songTitle, this._songLyrics, this._artistName,
-      this._artistImage, this._albumTitle, this._albumImage);
-
-  String get albumImage => _albumImage;
-
-  String get albumTitle => _albumTitle;
-
-  String get artistImage => _artistImage;
-
-  String get artistName => _artistName;
-
-  String get songLyrics => _songLyrics;
-
-  String get songTitle => _songTitle;
+  List<SongResponseObject> get songs => _songs;
 }
