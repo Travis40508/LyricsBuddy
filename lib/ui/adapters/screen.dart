@@ -10,12 +10,19 @@ abstract class Screen<T extends ViewModel> extends StatefulWidget {
 
   Widget onViewLoaded(T viewModel);
   Widget onViewLoading();
+  void init();
 
   @override
   _ScreenState<T> createState() => _ScreenState();
 }
 
 class _ScreenState<T extends ViewModel> extends State<Screen> {
+
+  @override
+  void initState() {
+    widget.init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
