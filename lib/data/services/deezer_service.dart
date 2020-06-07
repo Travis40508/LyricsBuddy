@@ -36,7 +36,10 @@ class DeezerService implements MusicService {
           deezerSong['album']['cover']
         )
       );
+      return song;
     }).toList();
+
+    return songs;
   }
 
 }
