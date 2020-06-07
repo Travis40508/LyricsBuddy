@@ -5,4 +5,6 @@ class SearchMusicViewModel extends ViewModel {
   final String _title;
 
   SearchMusicViewModel(this._title);
+
+  String get title => _title;
 }
