@@ -14,7 +14,7 @@ class SearchMusicScreen extends Screen<SearchMusicViewModel> {
   SearchMusicScreen(this._controller, ViewNotifier<ViewModel> viewNotifier) : super(viewNotifier);
 
   @override
-  Widget buildView(SearchMusicViewModel viewModel) {
+  Widget buildView(final SearchMusicViewModel viewModel) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
