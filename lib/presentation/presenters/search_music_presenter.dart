@@ -22,7 +22,8 @@ class SearchMusicPresenter extends OutboundPort<SearchMusicResponseObject> {
         songResponse.songTitle,
         songResponse.artistName,
         songResponse.albumImage != null && songResponse.albumImage.isNotEmpty ? songResponse.albumImage : songResponse.artistImage
-      )).toList()
+      )).toList(),
+      'Ex. Eminem'
     );
 
     _viewUpdater.updateView(searchMusicViewModel);

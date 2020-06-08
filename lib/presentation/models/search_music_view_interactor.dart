@@ -15,7 +15,8 @@ class SearchMusicViewInteractor extends ViewInteractor<SearchMusicViewModel> {
       'Music Search',
       0xFF448AFF,
       false,
-      []
+      [],
+      'Ex. Eminem'
     );
   }
 }

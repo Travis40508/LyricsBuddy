@@ -25,33 +25,35 @@ class SearchMusicScreen extends Screen<SearchMusicViewModel> {
         children: <Widget>[
           TextField(
             decoration: InputDecoration(
-              hintText: 'Ex. Eminem',
+              hintText: viewModel.searchHint,
             ),
             onChanged: (query) => _controller.onTextChanged(query),
           ),
-          viewModel.isLoading ? Center(child: CircularProgressIndicator()) : ListView.builder(
-            itemCount: viewModel.songs.length,
-            itemBuilder: (_, index) {
-              final song = viewModel.songs[index];
-              return Card(
-                elevation: 4.0,
-                child: ListTile(
-                  leading: CircleAvatar(
-                    child: Image(
-                      image: CachedNetworkImageProvider(
-                        song.image
+          viewModel.isLoading ? Center(child: CircularProgressIndicator()) : Expanded(
+            child: ListView.builder(
+              itemCount: viewModel.songs.length,
+              itemBuilder: (_, index) {
+                final song = viewModel.songs[index];
+                return Card(
+                  elevation: 4.0,
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      child: Image(
+                        image: CachedNetworkImageProvider(
+                          song.image
+                        ),
                       ),
                     ),
+                    title: Text(
+                      song.title
+                    ),
+                    subtitle: Text(
+                      song.artistName
+                    ),
                   ),
-                  title: Text(
-                    song.title
-                  ),
-                  subtitle: Text(
-                    song.artistName
-                  ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -60,8 +62,7 @@ class SearchMusicScreen extends Screen<SearchMusicViewModel> {
 
   @override
   void init() {
-    //Todo
+    //no initialization necessary
   }
-
 
 }

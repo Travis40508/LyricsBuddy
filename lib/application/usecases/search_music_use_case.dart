@@ -16,6 +16,7 @@ class SearchMusicUseCase extends InboundPort<SearchMusicRequestObject> {
 
   @override
   void execute(final SearchMusicRequestObject requestObject) async {
+    print('Making call for ${requestObject.query}');
     ///This is how we alert the view that we're loading the values
     _outboundPort.onResult(SearchMusicResponseObject(
       [],

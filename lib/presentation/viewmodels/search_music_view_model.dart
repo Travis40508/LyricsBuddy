@@ -7,8 +7,9 @@ class SearchMusicViewModel extends ViewModel {
   final int _appBarColor;
   final bool _isLoading;
   final List<SongViewModel> _songs;
+  final String _searchHint;
 
-  SearchMusicViewModel(this._title, this._appBarColor, this._isLoading, this._songs);
+  SearchMusicViewModel(this._title, this._appBarColor, this._isLoading, this._songs, this._searchHint);
 
   String get title => _title;
 
@@ -17,4 +18,6 @@ class SearchMusicViewModel extends ViewModel {
   bool get isLoading => _isLoading;
 
   int get appBarColor => _appBarColor;
+
+  String get searchHint => _searchHint;
 }
